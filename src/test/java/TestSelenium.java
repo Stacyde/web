@@ -23,12 +23,10 @@ public class TestSelenium {
     @BeforeEach
     void setUp() {
         ChromeOptions options = new ChromeOptions();
-        driver = new ChromeDriver(options);
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
-
-
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach
@@ -48,6 +46,7 @@ public class TestSelenium {
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         assertEquals(expected, actual);
     }
+
     @Test
     void orderSuccessName() {
         driver.get("http://localhost:9999/");
@@ -83,6 +82,7 @@ public class TestSelenium {
         String actual = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid .input__sub")).getText();
         assertEquals(expected, actual);
     }
+
     @Test
     void errorName() {
         driver.get("http://localhost:9999/");
@@ -94,16 +94,18 @@ public class TestSelenium {
         String actual = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid .input__sub")).getText();
         assertEquals(expected, actual);
     }
-     @Test
+
+    @Test
     void errorCheckBox() {
-         driver.get("http://localhost:9999/");
-         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Петрова Анастасия-Мария");
-         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79370357056");
-         driver.findElement(By.className("button__text")).click();
-         String expected = "Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй";
-         String actual = driver.findElement(By.cssSelector("[data-test-id='agreement'].input_invalid .checkbox__text")).getText();
-         assertEquals(expected, actual);
-     }
+        driver.get("http://localhost:9999/");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Петрова Анастасия-Мария");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79370357056");
+        driver.findElement(By.className("button__text")).click();
+        String expected = "Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй";
+        String actual = driver.findElement(By.cssSelector("[data-test-id='agreement'].input_invalid .checkbox__text")).getText();
+        assertEquals(expected, actual);
+    }
+
     @Test
     void errorSurnameName() {
         driver.get("http://localhost:9999/");
