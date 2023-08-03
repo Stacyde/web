@@ -22,11 +22,12 @@ public class TestSelenium {
 
     @BeforeEach
     void setUp() {
-        driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
+        driver = new ChromeDriver(options);
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
+
 
     }
 
